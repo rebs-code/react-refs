@@ -9,6 +9,7 @@ export default function TimerChallenge({ title, targetTime }) {
 
   if (timeRemaining <= 0) {
     clearInterval(timer.current);
+    setTimeRemaining(targetTime * 1000);
   }
 
   function handleStart() {
@@ -31,12 +32,12 @@ export default function TimerChallenge({ title, targetTime }) {
           {targetTime} second{targetTime > 1 ? "s" : ""}
         </p>
         <p>
-          <button onClick={timerStarted ? handleStop : handleStart}>
-            {timerStarted ? "Stop" : "Start"} Challenge
+          <button onClick={timerIsActive ? handleStop : handleStart}>
+            {timerIsActive ? "Stop" : "Start"} Challenge
           </button>
         </p>
-        <p className={timerStarted ? "active" : ""}>
-          {timerStarted ? "time is running" : "timer inactive"}
+        <p className={timerIsActive ? "active" : ""}>
+          {timerIsActive ? "time is running" : "timer inactive"}
         </p>
       </section>
     </>
